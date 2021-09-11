@@ -17,7 +17,9 @@ export class AppComponent {
   texto: String = "";
   roott: Boolean = false;
   logaritmo : Boolean = false;
+  historia: Operacion[];
   constructor(){
+    this.historia = new Array<Operacion>();
   }
 
   clear(){
@@ -170,6 +172,8 @@ export class AppComponent {
 
     console.log(ans);
     this.pantalla = ans;
+
+    this.add_historia(this.texto, ans);
   } else{
     this.pantalla = this.getBaseLog(10, this.texto)
     this.logaritmo = false
@@ -195,7 +199,10 @@ export class AppComponent {
       posicion = solucion.indexOf("sqrt",posicion+1);
     }
 
+    this.add_historia(this.pantalla, variable+'='+solucion);
+
     this.pantalla = variable + "=" + solucion;
+
   }
 
   //Logaritmo de un numero
@@ -225,6 +232,9 @@ export class AppComponent {
       let params=JSON.parse(`{${valores_finales}}`);
       var e = nerdamer(evaluar,params).evaluate();
       var result: number = +e.text();
+
+      this.add_historia(this.pantalla, String(result));
+
       this.pantalla=result;
     } catch (error) {
       console.error(error)
@@ -233,5 +243,32 @@ export class AppComponent {
 
   }
 
+  add_historia(texto:String, resultado:String){
+    var op_realizada = new Operacion(texto, resultado);
+    this.historia.push(op_realizada);
+  }
 
+  historial(){
+    console.log('HISTORIAL');
+    this.historia.forEach((operacion, index) => {
+      console.log(String(index)+'. '+operacion.getStringOp());
+    });
+  }
+
+}
+
+export class Operacion{
+  public texto:String;
+  public resultado:String;
+
+  constructor(texto:String,resultado:String)
+  {
+      this.texto = texto;
+      this.resultado = resultado;
+  }
+
+  getStringOp():string{
+    var cadena = this.texto+' = '+this.resultado;
+    return cadena;
+  }
 }
