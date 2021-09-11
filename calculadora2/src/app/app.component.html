@@ -18,11 +18,11 @@
             <button class="col-2">Historial</button>
             <label for=""></label>
             <button>&larr;</button>            
-            <button class="operador">Solv</button>
-            <button class="col-1">Rec</button>
-            <button class="operador">^</button>
-            <button class="operador">Sqrt</button>
-            <button class="numero">/</button>
+            <button class="operador" (click)="par1()">(</button>
+            <button class="col-1" (click)="par2()">)</button>
+            <button class="operador" (click)="potencia()">^</button>
+            <button class="operador" (click)="raiz()" >root</button>
+            <button class="numero" (click)="div()">/</button>
             <button class="numero" (click)="textSiete()">7</button>
             <button class="numero" (click)="textOcho()">8</button>
             <button class="numero" (click)="textNueve()">9</button>
