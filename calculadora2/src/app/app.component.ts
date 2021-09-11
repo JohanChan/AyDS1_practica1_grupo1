@@ -19,7 +19,7 @@ export class AppComponent {
   logaritmo : Boolean = false;
   constructor(){
   }
-  
+
   clear(){
     this.resultado = 0;
     this.numero = 0;
@@ -28,7 +28,7 @@ export class AppComponent {
   }
   textUno(){
     this.texto += "1"
-    
+
     if (this.roott) {
       this.texto += ")"
       this.roott = false;
@@ -120,7 +120,7 @@ export class AppComponent {
   }
   opcionResta(){
     this.operador = 1
-    this.numeroa = Number(this.pantalla)  
+    this.numeroa = Number(this.pantalla)
     this.texto += "-"
     this.pantalla = this.texto
   }
@@ -140,26 +140,26 @@ export class AppComponent {
   par2(){
     this.texto += ")"
     this.pantalla = this.texto
-    
+
   }
 
   potencia(){
     this.texto += "^"
     this.pantalla = this.texto
-    
+
   }
 
   raiz(){
     this.texto += "^(1/"
     this.pantalla = this.texto
     this.roott = true;
-    
+
   }
 
   div(){
     this.texto += "/"
     this.pantalla = this.texto
-    
+
   }
 
   igual(){
@@ -191,7 +191,7 @@ export class AppComponent {
     var posicion = solucion.indexOf("sqrt");
     while(posicion != -1){
       solucion = solucion.replace('sqrt', '√')//
-      
+
       posicion = solucion.indexOf("sqrt",posicion+1);
     }
 
@@ -202,8 +202,36 @@ export class AppComponent {
   log(){
     this.logaritmo = true
   }
-  
+
   getBaseLog(x, y) {
     return Math.log(y) / Math.log(x);
   }
+
+  evaluar_expresion(){
+    let expresion=this.pantalla.split(';');
+    let evaluar=expresion[0];
+
+    //Recuperacion de valores
+    try {
+      let valores_recibidos:String[];
+      let valores_finales="";
+      for(let i=1; i<expresion.length; i++){
+        valores_recibidos=expresion[i].trim().split('=')
+        valores_finales+=`"${valores_recibidos[0]}":"${valores_recibidos[1]}"`
+      if(i<expresion.length-1){
+        valores_finales+=','
+      }
+    }
+      let params=JSON.parse(`{${valores_finales}}`);
+      var e = nerdamer(evaluar,params).evaluate();
+      var result: number = +e.text();
+      this.pantalla=result;
+    } catch (error) {
+      console.error(error)
+      this.pantalla="Sintaxis incorrecta"
+    }
+
+  }
+
+
 }
