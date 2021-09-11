@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import * as Calculator from "@mroutput/jscalc";
+import * as nerdamer from 'nerdamer/all';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,12 @@ export class AppComponent {
   numeroa: number = 0;
   texto: String = "";
   roott: Boolean = false;
+  logaritmo : Boolean = false;
+  historia: Operacion[];
   constructor(){
+    this.historia = new Array<Operacion>();
   }
-  
+
   clear(){
     this.resultado = 0;
     this.numero = 0;
@@ -26,7 +30,7 @@ export class AppComponent {
   }
   textUno(){
     this.texto += "1"
-    
+
     if (this.roott) {
       this.texto += ")"
       this.roott = false;
@@ -118,7 +122,7 @@ export class AppComponent {
   }
   opcionResta(){
     this.operador = 1
-    this.numeroa = Number(this.pantalla)  
+    this.numeroa = Number(this.pantalla)
     this.texto += "-"
     this.pantalla = this.texto
   }
@@ -138,34 +142,133 @@ export class AppComponent {
   par2(){
     this.texto += ")"
     this.pantalla = this.texto
-    
+
   }
 
   potencia(){
     this.texto += "^"
     this.pantalla = this.texto
-    
+
   }
 
   raiz(){
     this.texto += "^(1/"
     this.pantalla = this.texto
     this.roott = true;
-    
+
   }
 
   div(){
     this.texto += "/"
     this.pantalla = this.texto
-    
+
   }
 
   igual(){
+    if(this.logaritmo == false){
     console.log(this.texto);
     var c = new Calculator();
     var ans = c.exec(this.texto);
 
     console.log(ans);
     this.pantalla = ans;
+
+    this.add_historia(this.texto, ans);
+  } else{
+    this.pantalla = this.getBaseLog(10, this.texto)
+    this.logaritmo = false
+  }
+  }
+
+  //-20x+5=4x,x
+  //x^2+2x=-1,x
+  resolver(){
+    var componentes = this.pantalla.split(',')
+    var ecuacion = componentes[0] //5x-8=4x
+    var variable = componentes[1] //x
+    var sol = nerdamer.solveEquations(ecuacion, variable);
+
+    //cadena con la solucion
+    var solucion = sol.toString();
+
+    //Le quito los sqrt y los intercambio por el signo de raiz
+    var posicion = solucion.indexOf("sqrt");
+    while(posicion != -1){
+      solucion = solucion.replace('sqrt', '√')//
+
+      posicion = solucion.indexOf("sqrt",posicion+1);
+    }
+
+    this.add_historia(this.pantalla, variable+'='+solucion);
+
+    this.pantalla = variable + "=" + solucion;
+
+  }
+
+  //Logaritmo de un numero
+  log(){
+    this.logaritmo = true
+  }
+
+  getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+  }
+
+  evaluar_expresion(){
+    let expresion=this.pantalla.split(';');
+    let evaluar=expresion[0];
+
+    //Recuperacion de valores
+    try {
+      let valores_recibidos:String[];
+      let valores_finales="";
+      for(let i=1; i<expresion.length; i++){
+        valores_recibidos=expresion[i].trim().split('=')
+        valores_finales+=`"${valores_recibidos[0]}":"${valores_recibidos[1]}"`
+      if(i<expresion.length-1){
+        valores_finales+=','
+      }
+    }
+      let params=JSON.parse(`{${valores_finales}}`);
+      var e = nerdamer(evaluar,params).evaluate();
+      var result: number = +e.text();
+
+      this.add_historia(this.pantalla, String(result));
+
+      this.pantalla=result;
+    } catch (error) {
+      console.error(error)
+      this.pantalla="Sintaxis incorrecta"
+    }
+
+  }
+
+  add_historia(texto:String, resultado:String){
+    var op_realizada = new Operacion(texto, resultado);
+    this.historia.push(op_realizada);
+  }
+
+  historial(){
+    console.log('HISTORIAL');
+    this.historia.forEach((operacion, index) => {
+      console.log(String(index)+'. '+operacion.getStringOp());
+    });
+  }
+
+}
+
+export class Operacion{
+  public texto:String;
+  public resultado:String;
+
+  constructor(texto:String,resultado:String)
+  {
+      this.texto = texto;
+      this.resultado = resultado;
+  }
+
+  getStringOp():string{
+    var cadena = this.texto+' = '+this.resultado;
+    return cadena;
   }
 }
