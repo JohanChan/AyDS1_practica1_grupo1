@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import * as Calculator from "@mroutput/jscalc";
+import * as nerdamer from 'nerdamer/all';
 
 @Component({
   selector: 'app-root',
@@ -167,5 +168,27 @@ export class AppComponent {
 
     console.log(ans);
     this.pantalla = ans;
+  }
+
+  //-20x+5=4x,x
+  //x^2+2x=-1,x
+  resolver(){
+    var componentes = this.pantalla.split(',')
+    var ecuacion = componentes[0] //5x-8=4x
+    var variable = componentes[1] //x
+    var sol = nerdamer.solveEquations(ecuacion, variable);
+
+    //cadena con la solucion
+    var solucion = sol.toString();
+
+    //Le quito los sqrt y los intercambio por el signo de raiz
+    var posicion = solucion.indexOf("sqrt");
+    while(posicion != -1){
+      solucion = solucion.replace('sqrt', '√')//
+      
+      posicion = solucion.indexOf("sqrt",posicion+1);
+    }
+
+    this.pantalla = variable + "=" + solucion;
   }
 }
