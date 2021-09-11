@@ -16,6 +16,7 @@ export class AppComponent {
   numeroa: number = 0;
   texto: String = "";
   roott: Boolean = false;
+  logaritmo : Boolean = false;
   constructor(){
   }
   
@@ -162,12 +163,17 @@ export class AppComponent {
   }
 
   igual(){
+    if(this.logaritmo == false){
     console.log(this.texto);
     var c = new Calculator();
     var ans = c.exec(this.texto);
 
     console.log(ans);
     this.pantalla = ans;
+  } else{
+    this.pantalla = this.getBaseLog(10, this.texto)
+    this.logaritmo = false
+  }
   }
 
   //-20x+5=4x,x
@@ -190,5 +196,14 @@ export class AppComponent {
     }
 
     this.pantalla = variable + "=" + solucion;
+  }
+
+  //Logaritmo de un numero
+  log(){
+    this.logaritmo = true
+  }
+  
+  getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
   }
 }
