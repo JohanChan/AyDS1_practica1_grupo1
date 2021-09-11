@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
+    <!--link href="index.css" rel="stylesheet" />
+    <script src="Display.js" type="text/javascript"></script>
+    <script src="Calculadora.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript" defer></script-->
+</head>
+<body>
+    <div class="container">
+        <div class="calculadora">
+            <input [(ngModel)]="pantalla" name="pantalla" class="display" type="text" placeholder="0">
+            <button class="col-1" (click)="clear()">C</button>
+            <button class="col-2">Historial</button>
+            <label for=""></label>
+            <button>&larr;</button>            
+            <button class="operador">Solv</button>
+            <button class="col-1">Rec</button>
+            <button class="operador">^</button>
+            <button class="operador">Sqrt</button>
+            <button class="numero">/</button>
+            <button class="numero" (click)="textSiete()">7</button>
+            <button class="numero" (click)="textOcho()">8</button>
+            <button class="numero" (click)="textNueve()">9</button>
+            <label for=""></label>
+            <button class="operador" (click)="opcionMulti()">X</button>
+            <button class="numero" (click)="textCuatro()">4</button>
+            <button class="numero" (click)="textCinco()">5</button>
+            <button class="numero" (click)="textSeis()">6</button>
+            <label for=""></label>
+            <button class="operador" (click)="opcionResta()">-</button>
+            <button class="numero" (click)="textUno()">1</button>
+            <button class="numero" (click)="textDos()">2</button>
+            <button class="numero" (click)="textTres()">3</button>
+            <label for=""></label>
+            <button class="operador" (click)="opcionSuma()">+</button>
+            <button class="col-2 numero" (click)="textCero()">0</button>
+            <button class="numero" (click)="textPunto()">.</button>
+            <label for=""></label>
+            <button class="operador" (click)="igual()">=</button>
+        </div>
+    </div>
+</body>
+</html>
