@@ -10,6 +10,7 @@ import * as nerdamer from 'nerdamer/all';
 export class AppComponent {
   title = 'calculadora';
   pantalla;
+  errEc:boolean = false;
   operador;
   resultado: number = 0;
   numero: number = 0;
@@ -183,9 +184,19 @@ export class AppComponent {
   //-20x+5=4x,x
   //x^2+2x=-1,x
   resolver(){
-    var componentes = this.pantalla.split(',')
+
+    this.pantalla = this.resolver2(this.pantalla);
+
+  }
+
+  //-20x+5=4x,x
+  //x^2+2x=-1,x
+  resolver2(pantallas:string) {
+    var componentes = pantallas.split(',')
     var ecuacion = componentes[0] //5x-8=4x
     var variable = componentes[1] //x
+    console.log(ecuacion)
+    console.log(variable)
     var sol = nerdamer.solveEquations(ecuacion, variable);
 
     //cadena con la solucion
@@ -193,15 +204,17 @@ export class AppComponent {
 
     //Le quito los sqrt y los intercambio por el signo de raiz
     var posicion = solucion.indexOf("sqrt");
-    while(posicion != -1){
+    while (posicion != -1) {
       solucion = solucion.replace('sqrt', '√')//
 
-      posicion = solucion.indexOf("sqrt",posicion+1);
+      posicion = solucion.indexOf("sqrt", posicion + 1);
     }
 
-    this.add_historia(this.pantalla, variable+'='+solucion);
-
-    this.pantalla = variable + "=" + solucion;
+    var res = variable + "=" + solucion;
+    if(typeof(res) != 'string'){
+      this.errEc = true;
+    }
+    return res
 
   }
 
