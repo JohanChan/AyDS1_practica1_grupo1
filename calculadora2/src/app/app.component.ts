@@ -181,6 +181,8 @@ export class AppComponent {
   }
   }
 
+  //Edy Galicia, cambio en las funciones resolver y resolver2.
+
   //-20x+5=4x,x
   //x^2+2x=-1,x
   resolver(){
@@ -209,6 +211,7 @@ export class AppComponent {
 
       posicion = solucion.indexOf("sqrt", posicion + 1);
     }
+
 
     var res = variable + "=" + solucion;
     if(typeof(res) != 'string'){
