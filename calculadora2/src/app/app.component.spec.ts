@@ -18,6 +18,37 @@ describe('AppComponent', () => {
     componente = new AppComponent();
   });
 
+  // YASMIN ELISA MONTERROSO ESCOBEDO
+  // 201801385
+  // Pruebas unitarias con división, raices y potencias
+
+
+  it('Resultado valido para división', ()=>{
+    let texto = '894/4';
+    let esperado = 223.5
+    expect(componente.igual2(texto)).toEqual(esperado);
+  })
+
+  it('Resultado valido para potencia con 0', ()=>{
+    let texto = '5^0';
+    let esperado = 1
+    expect(componente.igual2(texto)).toEqual(esperado);
+  })
+
+  it('Resultado valido para potencias', ()=>{
+    let texto = '2^12';
+    let esperado = 4096
+    expect(componente.igual2(texto)).toEqual(esperado);
+  })
+
+  it('Resultado valido para raices', ()=>{
+    let texto = '4096^(1/2)';
+    let esperado = 64
+    expect(componente.igual2(texto)).toEqual(esperado);
+  })
+
+  // FIN DE MI PARTE 
+
   it('Resultado valido para una ecuacion lineal', ()=>{
     let exp = '2x-5=x,x';
     let esperado = 'x=5'
