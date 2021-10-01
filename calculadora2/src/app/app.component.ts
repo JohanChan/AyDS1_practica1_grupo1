@@ -165,6 +165,13 @@ export class AppComponent {
 
   }
 
+  igual2(texto: string){
+
+    this.texto = texto
+    return this.igual()
+
+  }
+
   igual(){
     if(this.logaritmo == false){
     console.log(this.texto);
@@ -175,9 +182,12 @@ export class AppComponent {
     this.pantalla = ans;
 
     this.add_historia(this.texto, ans);
+
+    return ans
   } else{
     this.pantalla = this.getBaseLog(10, this.texto)
     this.logaritmo = false
+    return this.getBaseLog(10, this.texto)
   }
   }
 
