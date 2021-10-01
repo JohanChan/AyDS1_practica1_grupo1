@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  
+
   let componente:AppComponent;
 
   beforeEach(async () => {
@@ -47,7 +47,7 @@ describe('AppComponent', () => {
     expect(componente.igual2(texto)).toEqual(esperado);
   })
 
-  // FIN DE MI PARTE 
+  // FIN DE MI PARTE
 
   it('Resultado valido para una ecuacion lineal', ()=>{
     let exp = '2x-5=x,x';
@@ -69,4 +69,29 @@ describe('AppComponent', () => {
     expect(componente.errEc).toBeFalsy()
   })
 
+  // WALTER OSWALDO MACH VELASQUEZ
+  // 201315300
+  // Pruebas unitarias  evaluacion de expresiones
+  it('Evaluacion correcta de expresiones',()=>{
+    let expresion='x+y+z;x=23;y=2;z=1';
+    expect(componente.evaluar_expresion(expresion)).toEqual(26);
+  });
+
+  it('Sintaxis valida en expresiones',()=>{
+    let expresion='x^2+2*(cos(x)+x*x);x=6';
+    expect(componente.sintaxis_valida(expresion)).toEqual(true);
+  });
+
+  it('Ingreso de valores correctos',()=>{
+    let exp='x+y+z;x=23;y=2;z=1';
+    let expresion=exp.split(';');
+    let result=componente.parametros_expresion(expresion).valid;
+
+    expect(result).toBeTruthy();
+  });
+
+
+  it('Resultado valido',()=>{
+    expect(componente.resultado_valido).toBeTruthy();
+  })
 });

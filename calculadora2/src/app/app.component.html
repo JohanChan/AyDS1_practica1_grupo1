@@ -16,7 +16,7 @@
             <input [(ngModel)]="pantalla" name="pantalla" class="display" type="text" placeholder="0">
             <button class="col-1" (click)="clear()">C</button>
             <button class="col-2" (click)="historial()">Historial</button>
-            <button class="numero" (click)="evaluar_expresion()">Eval</button>
+            <button class="numero" (click)="evaluar_expresion(pantalla)">Eval</button>
 
             <button>&larr;</button>
             <button class="operador" (click)="par1()">(</button>
