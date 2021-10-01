@@ -18,6 +18,31 @@ describe('AppComponent', () => {
     componente = new AppComponent();
   });
 
+/* 
+ * 
+ * JOHAN LEONEL CHAN TOLEDO 
+ * 201603052
+ * PRUEBAS BASICAS SUMA RESTA MULTIPLICACIÓN
+*/
+
+it('Resultado valido para suma', ()=>{
+  let texto = '1+2+3+4';
+  let esperado = 10
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+it('Resultado valido para resta', ()=>{
+  let texto = '15-5-2';
+  let esperado = 8
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+it('Resultado valido para multiplicacion', ()=>{
+  let texto = '5*5';
+  let esperado = 25
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
   // YASMIN ELISA MONTERROSO ESCOBEDO
   // 201801385
   // Pruebas unitarias con división, raices y potencias
