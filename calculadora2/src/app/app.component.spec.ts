@@ -119,4 +119,35 @@ it('Resultado valido para multiplicacion', ()=>{
   it('Resultado valido',()=>{
     expect(componente.resultado_valido).toBeTruthy();
   })
+
+  // Fernando Augusto Armira Ramirez
+// 201503961
+// Pruebas unitarias logaritmos
+
+ it('Resultado correcto para un logaritmo de base 10', ()=>{
+  let base = 10
+  let num = 1;
+  let esperado = 0
+  expect(componente.getBaseLog(base,num)).toEqual(esperado);
+})
+
+it('Resultado correcto para un logaritmo distinto de base 10', ()=>{
+  let base = 5
+  let num = 125;
+  let esperado = 3.0000000000000004
+  expect(componente.getBaseLog(base,num)).toEqual(esperado);
+})
+
+it('Logaritmo de base 10 de un numero negativo', ()=>{
+  let base = 10
+  let num = -1;
+  expect(componente.getBaseLog(base,num)).toBeNaN();
+})
+
+it('Logaritmo indefinido', ()=>{
+  let base = 10
+  let num = "fer";
+  expect(componente.getBaseLog(base,num)).toBeNaN();;
+})
+
 });
