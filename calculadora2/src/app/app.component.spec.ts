@@ -150,4 +150,36 @@ it('Logaritmo indefinido', ()=>{
   expect(componente.getBaseLog(base,num)).toBeNaN();;
 })
 
+// Edgar Humberto Borrayo Bartolón
+// 201503702
+// Pruebas de historial
+
+it('Resultado operaciones basicas', ()=>{
+  let texto = '1+2*6/4';
+  let esperado = 4
+  expect(componente.igual2(texto)).toEqual(esperado);
+});
+
+it('Resultado operaciones intermedias', ()=>{
+  let texto = '800/4^2';
+  let esperado = 50
+  expect(componente.igual2(texto)).toEqual(esperado);
+});
+
+it('Resultado operaciones avanzadas',()=>{
+  let expresion='x+y+z;x=23;y=2;z=1';
+  expect(componente.evaluar_expresion(expresion)).toEqual(26);
+});
+
+it('Resultado operaciones logaritmicas', ()=>{
+  let base = 10
+  let num = 1;
+  let esperado = 0
+  expect(componente.getBaseLog(base,num)).toEqual(esperado);
+})
+
+it('Resultado satisfactorio historial', ()=>{
+  expect(componente.historial()).toBe();
+})
+
 });
