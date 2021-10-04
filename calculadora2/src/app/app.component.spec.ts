@@ -43,6 +43,132 @@ it('Resultado valido para multiplicacion', ()=>{
   expect(componente.igual2(texto)).toEqual(esperado);
 })
 
+it('Resultado valido para suma', ()=>{
+  let texto = '1+2+3+4';
+  let esperado = 10
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+it('Resultado valido para operaciones varias', ()=>{
+  let texto = '4*2+15';
+  let esperado = 23
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+it('Indefinido texto Cero', ()=>{
+  expect(componente.textCero()).toBeUndefined();
+})
+
+it('Indefinido texto Uno', ()=>{
+  expect(componente.textUno()).toBeUndefined();
+})
+
+it('Indefinido texto Dos', ()=>{
+  expect(componente.textDos()).toBeUndefined();
+})
+
+it('Indefinido texto Tres', ()=>{
+  expect(componente.textTres()).toBeUndefined();
+})
+
+it('Indefinido texto Cuatro', ()=>{
+  expect(componente.textCuatro()).toBeUndefined();
+})
+
+it('Indefinido texto Cinco', ()=>{
+  expect(componente.textCinco()).toBeUndefined();
+})
+
+it('Indefinido texto Seis', ()=>{
+  expect(componente.textSeis()).toBeUndefined();
+})
+
+it('Indefinido texto Siete', ()=>{
+  expect(componente.textSiete()).toBeUndefined();
+})
+
+it('Indefinido texto Ocho', ()=>{
+  expect(componente.textOcho()).toBeUndefined();
+})
+
+it('Indefinido texto Nueve', ()=>{
+  expect(componente.textNueve()).toBeUndefined();
+})
+
+it('Indefinido texto Punto', ()=>{
+  expect(componente.textPunto()).toBeUndefined();
+})
+
+it('Indefinido texto Div', ()=>{
+  expect(componente.div()).toBeUndefined();
+})
+
+it('Indefinido Opcion Suma', ()=>{
+  expect(componente.opcionSuma()).toBeUndefined();
+})
+
+it('Indefinido Opcion Resta', ()=>{
+  expect(componente.opcionResta()).toBeUndefined();
+})
+
+it('Indefinido Opcion Multiplicacion', ()=>{
+  expect(componente.opcionMulti()).toBeUndefined();
+})
+
+it('Indefinido Opcion Historial', ()=>{
+  expect(componente.historial()).toBeUndefined();
+})
+
+it('Indefinido Texto Raiz', ()=>{
+  expect(componente.raiz()).toBeUndefined();
+})
+
+it('Indefinido Texto Potencia', ()=>{
+  expect(componente.potencia()).toBeUndefined();
+})
+
+it('Indefinido Texto par1', ()=>{
+  expect(componente.par1()).toBeUndefined();
+})
+
+it('Indefinido Texto par2', ()=>{
+  expect(componente.par2()).toBeUndefined();
+})
+
+it('Indefinido Add historia', ()=>{
+  expect(componente.add_historia("Resultoad","13")).toBeUndefined();
+})
+
+it('Resultado funcion resultado_valido', ()=>{
+  componente.pantalla = "hola"
+  let esperado = true;
+  expect(componente.resultado_valido()).toEqual(true);
+})
+
+it('Resultado Log', ()=>{
+  let texto = "";
+  expect(componente.getBaseLog(2,10)).toEqual(3.3219280948873626);
+})
+
+it('Resultado valido para resta', ()=>{
+  let texto = '15-5-2';
+  let esperado = 8
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+
+it('Resultado valido para resta 2', ()=>{
+  let texto = '150-5-2-100';
+  let esperado = 43
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
+it('Resultado valido para multiplicacion', ()=>{
+  let texto = '5*5';
+  let esperado = 25
+  expect(componente.igual2(texto)).toEqual(esperado);
+})
+
   // YASMIN ELISA MONTERROSO ESCOBEDO
   // 201801385
   // Pruebas unitarias con división, raices y potencias

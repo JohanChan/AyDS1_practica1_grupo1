@@ -201,9 +201,7 @@ export class AppComponent {
   //-20x+5=4x,x
   //x^2+2x=-1,x
   resolver(){
-
     this.pantalla = this.resolver2(this.pantalla);
-
   }
 
   //-20x+5=4x,x
